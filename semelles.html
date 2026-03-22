@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos Semelles Funéraires — MDM Marbrerie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --or:#c9a84c;
+  --or-light:#e8c96a;
+  --or-dark:#a07830;
+  --anthracite:#2c2c2c;
+  --anthracite-light:#3d3d3d;
+  --anthracite-dark:#1a1a1a;
+  --gris:#f2f2f0;
+  --gris-moyen:#e0e0dc;
+  --texte:#1e1e1e;
+  --texte-doux:#5a5a5a;
+  --blanc:#ffffff;
+  --border:#d4d0c8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Raleway',sans-serif;font-weight:400;background:var(--gris);color:var(--texte);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--anthracite-dark);border-bottom:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px}
+.logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--blanc);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--or)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--or)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.burger span{display:block;width:22px;height:2px;background:var(--blanc);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--anthracite-dark);border-bottom:1px solid rgba(201,168,76,0.3);z-index:999;padding:1.5rem 2rem;flex-direction:column;gap:1.2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.mobile-menu a:last-child{border-bottom:none;color:var(--or)}
+
+/* HERO */
+.hero-page{min-height:60vh;background:var(--anthracite-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-page::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,0.02) 40px,rgba(201,168,76,0.02) 41px)}
+.hero-line{width:60px;height:1px;background:var(--or);margin:0 auto 2rem}
+.hero-page h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,3.5rem);font-weight:400;color:var(--blanc);line-height:1.1;margin-bottom:0.5rem}
+.hero-page h1 em{font-style:italic;color:var(--or-light)}
+.hero-page p{max-width:500px;color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.9;margin:1.5rem auto 0;font-weight:300}
+
+/* SECTIONS */
+section{padding:5rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-eyebrow{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+.section-eyebrow::after{content:'';flex:1;max-width:40px;height:1px;background:var(--or)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;line-height:1.2;margin-bottom:2rem}
+.section-title em{font-style:italic;color:var(--or-dark)}
+
+/* CARD SEMELLES */
+.semelle-card{background:var(--blanc);padding:3rem;border:1px solid var(--border);transition:all .25s;text-align:center;max-width:500px;margin:0 auto}
+.semelle-card:hover{border-color:var(--or);box-shadow:0 4px 12px rgba(201,168,76,0.1)}
+.semelle-icon{width:60px;height:60px;background:var(--gris);border:2px solid var(--or);border-radius:8px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.semelle-icon svg{width:32px;height:32px;stroke:var(--or);fill:none;stroke-width:1.5}
+.semelle-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--texte);margin-bottom:1rem}
+.semelle-card p{font-size:0.9rem;color:var(--texte-doux);line-height:1.8;margin-bottom:2rem;font-weight:300}
+.semelle-link{display:inline-block;padding:0.9rem 2rem;background:var(--or);color:var(--blanc);text-decoration:none;font-size:0.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:background .15s}
+.semelle-link:hover{background:var(--or-dark)}
+
+/* DESCRIPTION */
+.description-box{background:var(--blanc);padding:2.5rem;border-left:3px solid var(--or);margin:3rem 0}
+.description-box h4{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--texte);margin-bottom:0.8rem}
+.description-box p{color:var(--texte-doux);line-height:1.8;font-size:0.92rem;font-weight:300}
+
+/* FOOTER */
+footer{background:var(--anthracite-dark);color:rgba(255,255,255,0.4);padding:3rem 2rem;text-align:center;margin-top:2rem}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanc);letter-spacing:3px;display:block;margin-bottom:0.5rem}
+.footer-logo span{color:var(--or)}
+.footer-line{width:40px;height:1px;background:var(--or);margin:1.2rem auto}
+footer p{font-size:0.72rem;letter-spacing:1px;line-height:2}
+footer a{color:var(--or-light);text-decoration:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1rem}
+  .nav-links{display:none}
+  .burger{display:flex}
+  section{padding:3.5rem 1.5rem}
+  .hero-page{padding:8rem 1.5rem 3rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">MDM <span>Marbrerie</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Nos services</a></li>
+    <li><a href="index.html#about">À propos</a></li>
+    <li><a href="avis.html">Avis clients</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="login.html" style="color:var(--or);border:1px solid rgba(201,168,76,0.4);padding:0.4rem 1rem;border-radius:2px">Connexion</a></li>
+  </ul>
+  
+  <div class="burger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Nos services</a>
+  <a href="index.html#about">À propos</a>
+  <a href="avis.html">Avis clients</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<div class="hero-page">
+  <div class="hero-line"></div>
+  <h1>Nos <em>Semelles</em></h1>
+  <p>Découvrez notre gamme complète de semelles funéraires en béton et granit, conçues pour délimiter et valoriser votre concession.</p>
+</div>
+
+<section>
+  <div class="section-inner">
+    <p class="section-eyebrow">Notre offre</p>
+    <h2 class="section-title">Semelles <em>funéraires</em></h2>
+    
+    <div class="semelle-card">
+      <div class="semelle-icon"><svg viewBox="0 0 24 24"><rect x="2" y="12" width="20" height="9" rx="1"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="4" y1="4" x2="20" y2="4"/></svg></div>
+      <h3>Nos Semelles</h3>
+      <p style="margin-bottom:1rem">Collection complète de semelles funéraires disponibles en différentes dimensions et matériaux. Chaque semelle est conçue pour assurer la stabilité et l'esthétique de votre installation.</p>
+      <p style="font-style:italic;color:var(--or-dark);font-size:0.85rem">Consultez le cataloguecomplet avec tous les modèles, dimensions et finitions disponibles.</p>
+      <a href="documents/semelles/Nos Semelles.pdf.pdf" download class="semelle-link">📄 Télécharger le catalogue</a>
+    </div>
+
+    <div class="description-box">
+      <h4>À propos de nos semelles</h4>
+      <p>Les semelles funéraires jouent un rôle essentiel dans la stabilité et l'apparence de votre monument. Elles délimitent la concession et créent une base solide pour votre installation. Nous proposons des semelles en béton et granit, adaptées à tous les types de sépultures et budgets.</p>
+    </div>
+
+    <div class="description-box">
+      <h4>Matériaux disponibles</h4>
+      <p><strong>Béton :</strong> Solution économique et durable, disponible en finition brute ou polie. <strong>Granit :</strong> Matériau noble offrant une durabilité exceptionnelle et une finition premium.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--blanc)">
+  <div class="section-inner">
+    <p class="section-eyebrow">Faire votre demande</p>
+    <h2 class="section-title">Commander votre <em>semelle</em></h2>
+    <form id="semelesForm" onsubmit="sendSemelesForm(event)" style="max-width:600px;margin:2rem auto">
+      <input type="hidden" name="access_key" value="87e4d05b-0d1f-4dd2-acfb-dca689e55c0b">
+      <input type="hidden" name="subject" value="Nouvelle commande — Semelles">
+      <input type="hidden" name="from_name" value="Site MDM Marbrerie">
+      
+      <div class="field"><label>Prénom et nom *</label><input type="text" name="nom" required placeholder="Jean Dupont"></div>
+      <div class="field"><label>Téléphone *</label><input type="tel" name="telephone" required placeholder="06 00 00 00 00"></div>
+      <div class="field"><label>Adresse e-mail *</label><input type="email" name="email" required placeholder="votre@email.fr"></div>
+      
+      <div class="field"><label>Cimetière / commune *</label><input type="text" name="cimetiere" required placeholder="Ex : Cimetière de Montgeron"></div>
+      
+      <div class="field"><label>Type de semelle *</label>
+        <select name="type_semelle" required style="width:100%;padding:0.8rem 1rem;border:1px solid var(--border);background:var(--gris);font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--texte)">
+          <option value="">— Sélectionner —</option>
+          <option>Semelle béton - Finition brute</option>
+          <option>Semelle béton - Finition polie</option>
+          <option>Semelle granit - Premium</option>
+          <option>Autre (à définir)</option>
+        </select>
+      </div>
+      
+      <div class="field"><label>Dimensions ou détails *</label><textarea name="details" required placeholder="Dimensions souhaitées, spécifications particulières..." style="width:100%;padding:0.8rem 1rem;border:1px solid var(--border);background:var(--gris);font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--texte);resize:vertical;min-height:100px"></textarea></div>
+      
+      <div class="field"><label>Comment souhaitez-vous être contacté ?</label>
+        <select name="contact_prefere" style="width:100%;padding:0.8rem 1rem;border:1px solid var(--border);background:var(--gris);font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--texte)">
+          <option>Par téléphone (dans la journée)</option>
+          <option>Par e-mail</option>
+          <option>Le plus rapidement possible</option>
+        </select>
+      </div>
+      
+      <button type="submit" id="submitBtn" style="margin-top:1.5rem;padding:1rem;width:100%;background:var(--or);color:var(--blanc);font-family:'Raleway',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;border:none;cursor:pointer;transition:background .25s">Envoyer ma commande</button>
+      <p style="font-size:0.68rem;color:var(--texte-doux);margin-top:0.8rem;text-align:center">Informations traitées en toute confidentialité</p>
+      <div class="success-msg" id="successMsg" style="display:none;background:#f0f5f0;border:1px solid #bdd4bd;color:#3a5a3a;padding:1rem;font-size:0.85rem;margin-top:1rem;text-align:center">✓ &nbsp;Votre demande a bien été reçue. Nous vous contacterons rapidement pour affiner votre commande.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">MDM <span>Marbrerie</span> Père et Fils</span>
+  <div class="footer-line"></div>
+  <p>Montgeron — Île-de-France<br>
+  <a href="tel:0764848544">07 64 84 85 44</a> &nbsp;·&nbsp;
+  <a href="#">marbreriefunerairepereetfils@gmail.com</a></p>
+  <p style="margin-top:1.5rem;font-size:0.62rem;opacity:0.35">© 2025 MDM Marbrerie Funéraire Père et Fils — Tous droits réservés</p>
+</footer>
+
+<script>
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      var target=document.querySelector(this.getAttribute('href'));
+      if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});closeMenu()}
+    })
+  })
+});
+async function sendSemelesForm(e){
+  e.preventDefault();
+  var btn=document.getElementById('submitBtn');
+  btn.textContent='Envoi en cours...';btn.disabled=true;
+  var data=new FormData(e.target);
+  try{
+    var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});
+    var json=await res.json();
+    if(json.success){
+      document.getElementById('successMsg').style.display='block';
+      e.target.reset();
+      btn.textContent='Envoyer ma commande';
+    }else{alert('Erreur. Appelez-nous au 07 64 84 85 44.');btn.disabled=false;btn.textContent='Envoyer ma commande'}
+  }catch(err){alert('Erreur. Appelez-nous au 07 64 84 85 44.');btn.disabled=false;btn.textContent='Envoyer ma commande'}
+}
+</script>
+</body>
+</html>
