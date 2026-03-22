@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion Client — MDM Marbrerie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --or:#c9a84c;
+  --or-light:#e8c96a;
+  --or-dark:#a07830;
+  --anthracite:#2c2c2c;
+  --anthracite-light:#3d3d3d;
+  --anthracite-dark:#1a1a1a;
+  --gris:#f2f2f0;
+  --gris-moyen:#e0e0dc;
+  --texte:#1e1e1e;
+  --texte-doux:#5a5a5a;
+  --blanc:#ffffff;
+  --border:#d4d0c8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Raleway',sans-serif;font-weight:400;background:var(--gris);color:var(--texte);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--anthracite-dark);border-bottom:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px}
+.logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--blanc);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--or)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--or)}
+
+/* CONTAINER */
+.login-container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;margin-top:64px}
+.login-box{background:var(--blanc);padding:3rem;border:1px solid var(--border);max-width:400px;width:100%;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+.login-box h1{font-family:'Playfair Display',serif;font-size:2rem;color:var(--texte);margin-bottom:0.5rem;text-align:center}
+.login-box p{text-align:center;color:var(--texte-doux);margin-bottom:2rem;font-size:0.9rem}
+
+/* FORM */
+.form-group{margin-bottom:1.5rem}
+.form-group label{display:block;font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--texte-doux);margin-bottom:0.4rem;font-weight:500}
+.form-group input{width:100%;padding:0.8rem;border:1px solid var(--border);background:var(--gris);font-family:'Raleway',sans-serif;font-size:0.9rem;color:var(--texte);outline:none;transition:border .2s}
+.form-group input:focus{border-color:var(--or);background:var(--blanc)}
+
+.btn-submit{width:100%;padding:0.9rem;background:var(--or);color:var(--blanc);border:none;font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.btn-submit:hover{background:var(--or-dark)}
+
+.login-link{text-align:center;margin-top:1.5rem;font-size:0.85rem;color:var(--texte-doux)}
+.login-link a{color:var(--or);text-decoration:none;font-weight:600}
+.login-link a:hover{color:var(--or-dark)}
+
+.error-msg{background:#f8d7da;border:1px solid #f5c6cb;color:#721c24;padding:0.8rem;border-radius:4px;margin-bottom:1rem;font-size:0.85rem;display:none}
+.success-msg{background:#d4edda;border:1px solid #c3e6cb;color:#155724;padding:0.8rem;border-radius:4px;margin-bottom:1rem;font-size:0.85rem;display:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1rem}
+  .login-box{padding:2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">MDM <span>Marbrerie</span></a>
+</nav>
+
+<div class="login-container">
+  <div class="login-box">
+    <h1>Connexion</h1>
+    <p>Connectez-vous pour laisser un avis sur nos services</p>
+    
+    <div class="error-msg" id="errorMsg"></div>
+    <div class="success-msg" id="successMsg"></div>
+    
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Adresse e-mail *</label>
+        <input type="email" id="email" name="email" required placeholder="votre@email.fr">
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Mot de passe *</label>
+        <input type="password" id="password" name="password" required placeholder="••••••••">
+      </div>
+      
+      <button type="submit" class="btn-submit">Se connecter</button>
+    </form>
+    
+    <div class="login-link">
+      Pas encore inscrit ? <a href="#" onclick="showRegister(event)">Créer un compte</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// Base de données simple (localStorage)
+function saveUser(email, password) {
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  users[email] = {password: password, registeredAt: new Date().toISOString()};
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
+function getUser(email) {
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  return users[email] || null;
+}
+
+function login(email, password) {
+  let user = getUser(email);
+  if(user && user.password === password) {
+    localStorage.setItem('currentUser', email);
+    return true;
+  }
+  return false;
+}
+
+function logout() {
+  localStorage.removeItem('currentUser');
+}
+
+function getCurrentUser() {
+  return localStorage.getItem('currentUser');
+}
+
+// Gestion du formulaire
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let email = document.getElementById('email').value;
+  let password = document.getElementById('password').value;
+  
+  let errorMsg = document.getElementById('errorMsg');
+  let successMsg = document.getElementById('successMsg');
+  errorMsg.style.display = 'none';
+  successMsg.style.display = 'none';
+  
+  // Vérifier si c'est une inscription ou une connexion
+  let user = getUser(email);
+  
+  if(!user) {
+    // Créer un nouveau compte
+    saveUser(email, password);
+    successMsg.textContent = 'Compte créé avec succès ! Redirection...';
+    successMsg.style.display = 'block';
+    setTimeout(() => {
+      login(email, password);
+      window.location.href = 'avis.html';
+    }, 1500);
+  } else if(user.password === password) {
+    // Connexion réussie
+    login(email, password);
+    successMsg.textContent = 'Connexion réussie ! Redirection...';
+    successMsg.style.display = 'block';
+    setTimeout(() => {
+      window.location.href = 'avis.html';
+    }, 1500);
+  } else {
+    // Mot de passe incorrect
+    errorMsg.textContent = 'Mot de passe incorrect';
+    errorMsg.style.display = 'block';
+  }
+});
+
+function showRegister(e) {
+  e.preventDefault();
+  document.querySelector('.login-box h1').textContent = 'Créer un compte';
+  document.querySelector('.login-box p').textContent = 'Inscrivez-vous pour laisser vos avis';
+  document.querySelector('.login-link').innerHTML = 'Vous avez déjà un compte ? <a href="login.html">Se connecter</a>';
+}
+</script>
+</body>
+</html>
