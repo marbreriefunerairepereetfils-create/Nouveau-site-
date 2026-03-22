@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos Monuments Funéraires — MDM Marbrerie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --or:#c9a84c;
+  --or-light:#e8c96a;
+  --or-dark:#a07830;
+  --anthracite:#2c2c2c;
+  --anthracite-light:#3d3d3d;
+  --anthracite-dark:#1a1a1a;
+  --gris:#f2f2f0;
+  --gris-moyen:#e0e0dc;
+  --texte:#1e1e1e;
+  --texte-doux:#5a5a5a;
+  --blanc:#ffffff;
+  --border:#d4d0c8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Raleway',sans-serif;font-weight:400;background:var(--gris);color:var(--texte);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--anthracite-dark);border-bottom:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px}
+.logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--blanc);text-decoration:none;letter-spacing:2px}
+.logo span{color:var(--or)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--or)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.burger span{display:block;width:22px;height:2px;background:var(--blanc);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--anthracite-dark);border-bottom:1px solid rgba(201,168,76,0.3);z-index:999;padding:1.5rem 2rem;flex-direction:column;gap:1.2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.mobile-menu a:last-child{border-bottom:none;color:var(--or)}
+
+/* HERO */
+.hero-page{min-height:60vh;background:var(--anthracite-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-page::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,0.02) 40px,rgba(201,168,76,0.02) 41px)}
+.hero-line{width:60px;height:1px;background:var(--or);margin:0 auto 2rem}
+.hero-page h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,3.5rem);font-weight:400;color:var(--blanc);line-height:1.1;margin-bottom:0.5rem}
+.hero-page h1 em{font-style:italic;color:var(--or-light)}
+.hero-page p{max-width:500px;color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.9;margin:1.5rem auto 0;font-weight:300}
+
+/* SECTIONS */
+section{padding:5rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-eyebrow{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+.section-eyebrow::after{content:'';flex:1;max-width:40px;height:1px;background:var(--or)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;line-height:1.2;margin-bottom:2rem}
+.section-title em{font-style:italic;color:var(--or-dark)}
+
+/* GRID DE MONUMENTS */
+.monuments-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.monument-card{background:var(--blanc);padding:2rem;border:1px solid var(--border);transition:all .25s;cursor:pointer}
+.monument-card:hover{border-color:var(--or);box-shadow:0 4px 12px rgba(201,168,76,0.1);transform:translateY(-2px)}
+.monument-icon{width:50px;height:50px;background:var(--gris);border:2px solid var(--or);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.monument-icon svg{width:28px;height:28px;stroke:var(--or);fill:none;stroke-width:1.5}
+.monument-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;color:var(--texte);margin-bottom:0.8rem}
+.monument-card p{font-size:0.82rem;color:var(--texte-doux);line-height:1.7;margin-bottom:1.5rem;font-weight:300}
+.monument-link{display:inline-block;padding:0.7rem 1.5rem;background:var(--or);color:var(--blanc);text-decoration:none;font-size:0.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:background .15s}
+.monument-link:hover{background:var(--or-dark)}
+
+/* FOOTER */
+footer{background:var(--anthracite-dark);color:rgba(255,255,255,0.4);padding:3rem 2rem;text-align:center;margin-top:2rem}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanc);letter-spacing:3px;display:block;margin-bottom:0.5rem}
+.footer-logo span{color:var(--or)}
+.footer-line{width:40px;height:1px;background:var(--or);margin:1.2rem auto}
+footer p{font-size:0.72rem;letter-spacing:1px;line-height:2}
+footer a{color:var(--or-light);text-decoration:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1rem}
+  .nav-links{display:none}
+  .burger{display:flex}
+  section{padding:3.5rem 1.5rem}
+  .hero-page{padding:8rem 1.5rem 3rem}
+}
+@media(max-width:480px){
+  .monuments-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">MDM <span>Marbrerie</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Nos services</a></li>
+    <li><a href="index.html#about">À propos</a></li>
+    <li><a href="avis.html">Avis clients</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="login.html" style="color:var(--or);border:1px solid rgba(201,168,76,0.4);padding:0.4rem 1rem;border-radius:2px">Connexion</a></li>
+  </ul>
+  
+  <div class="burger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Nos services</a>
+  <a href="index.html#about">À propos</a>
+  <a href="avis.html">Avis clients</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<div class="hero-page">
+  <div class="hero-line"></div>
+  <h1>Nos <em>Monuments</em></h1>
+  <p>Découvrez notre large gamme de monuments funéraires. Chaque catalogue détaille nos collections, matériaux et possibilités de personnalisation.</p>
+</div>
+
+<section>
+  <div class="section-inner">
+    <p class="section-eyebrow">Nos collections</p>
+    <h2 class="section-title">Monuments <em>funéraires</em></h2>
+    
+    <div class="monuments-grid">
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 9h16M8 21v-4h8v4"/></svg></div>
+        <h3>Catalogue Monument Classique</h3>
+        <p>Notre sélection de monuments classiques en granit et marbre, intemporels et élégants.</p>
+        <a href="documents/monuments/Catalogue monument classique .pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><path d="M12 3c3.3 0 6 2.7 6 6 0 2.2-1.1 4.1-2.8 5.4L12 21l-3.2-6.6C7.1 13.1 6 11.2 6 9c0-3.3 2.7-6 6-6z"/></svg></div>
+        <h3>Chapelles</h3>
+        <p>Structures funéraires de prestige pour installations monumentales.</p>
+        <a href="documents/monuments/CHAPELLES.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg></div>
+        <h3>Monuments Classiques Ouvragés</h3>
+        <p>Monuments avec détails ouvragés et ornementations raffinées.</p>
+        <a href="documents/monuments/LES MONUMENTS CLASSIQUES OUVRAGES.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8V7a2 2 0 012-2h14a2 2 0 012 2v1"/></svg></div>
+        <h3>Monuments Cinéraires</h3>
+        <p>Solutions spécialisées pour inhumations de cendres.</p>
+        <a href="documents/monuments/LES MONUMENTS CINERAIRES.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 6v10c0 5 8 10 8 10s8-5 8-10V6l-8-4z"/></svg></div>
+        <h3>Monuments Création</h3>
+        <p>Créations sur mesure et designs personnalisés selon vos souhaits.</p>
+        <a href="documents/monuments/LES MONUMENTS CRÉATION.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="8" height="18" rx="1"/><rect x="14" y="3" width="8" height="18" rx="1"/></svg></div>
+        <h3>Monuments Doubles</h3>
+        <p>Monuments doubles pour concessions familiales et couples.</p>
+        <a href="documents/monuments/LES MONUMENTS DOUBLES.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 7l9-4 9 4v10H3V7z"/></svg></div>
+        <h3>Monuments d'Importation</h3>
+        <p>Sélection de monuments importés aux finitions exceptionnelles.</p>
+        <a href="documents/monuments/LES MONUMENTS IMPORT.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><path d="M4 12h16M4 6h16M4 18h16M2 3h20v18H2V3z"/></svg></div>
+        <h3>Monuments Mixtes</h3>
+        <p>Combinaisons de matériaux pour un rendu unique et moderne.</p>
+        <a href="documents/monuments/LES MONUMENTS MIXTES.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="15" rx="1"/><line x1="4" y1="10" x2="20" y2="10"/></svg></div>
+        <h3>Monuments Plats</h3>
+        <p>Monuments plats élégants, adaptés à tous les espaces.</p>
+        <a href="documents/monuments/LES MONUMENTS PLATS.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><path d="M12 2L8 8h8l-4-6zM6 8h12l-2 14H8l-2-14z"/></svg></div>
+        <h3>Monuments Religieux</h3>
+        <p>Monuments avec confessions religieuses et symboles spirituels.</p>
+        <a href="documents/monuments/Les confessions religieuses .pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Motifs &amp; Ornementations</h3>
+        <p>Catalogue de motifs et ornementations pour personnalisation.</p>
+        <a href="documents/monuments/Les motifs.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+
+      <div class="monument-card">
+        <div class="monument-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="8 6 12 2 16 6"/></svg></div>
+        <h3>Stèles Funéraires</h3>
+        <p>Stèles verticales en différents matériaux et formes.</p>
+        <a href="documents/monuments/LES STÈLES.pdf.pdf" download class="monument-link">📄 Télécharger</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">MDM <span>Marbrerie</span> Père et Fils</span>
+  <div class="footer-line"></div>
+  <p>Montgeron — Île-de-France<br>
+  <a href="tel:0764848544">07 64 84 85 44</a> &nbsp;·&nbsp;
+  <a href="#">marbreriefunerairepereetfils@gmail.com</a></p>
+  <p style="margin-top:1.5rem;font-size:0.62rem;opacity:0.35">© 2025 MDM Marbrerie Funéraire Père et Fils — Tous droits réservés</p>
+</footer>
+
+<script>
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    var target=document.querySelector(this.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});closeMenu()}
+  })
+});
+</script>
+</body>
+</html>
